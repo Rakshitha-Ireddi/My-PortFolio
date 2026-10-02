@@ -10,7 +10,10 @@
     </linearGradient>
   </defs>
   <rect width="240" height="240" rx="36" fill="url(#bgGrad)"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
-        font-family="'Poppins', 'Segoe UI', sans-serif" font-size="92" font-weight="600"
+  <text x="50%" y="46%" text-anchor="middle" dominant-baseline="middle"
+        font-family="'Poppins', 'Segoe UI', sans-serif" font-size="88" font-weight="600"
         fill="url(#textGrad)" letter-spacing="2">IR</text>
+  <path d="M58,168 Q120,202 182,162" fill="none" stroke="url(#textGrad)"
+        stroke-width="9" stroke-linecap="round"/>
+  <path d="M204,148 L188,171 L176,153 Z" fill="url(#textGrad)"/>
 </svg>
