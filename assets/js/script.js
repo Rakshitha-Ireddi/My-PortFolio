@@ -136,10 +136,9 @@ const applyTheme = function (theme) {
   }
 }
 
-// apply saved theme, falling back to the visitor's system preference
+// default to dark theme unless the visitor has explicitly chosen light before
 const storedTheme = localStorage.getItem("portfolio-theme");
-const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-applyTheme(storedTheme || (prefersLight ? "light" : "dark"));
+applyTheme(storedTheme || "dark");
 
 themeToggleBtn.addEventListener("click", function () {
   const isLight = rootEl.getAttribute("data-theme") === "light";
@@ -287,7 +286,7 @@ document.addEventListener("keydown", function (e) { if (e.key === "Escape") clos
 const pubData = {
   "mveb": {
     "title": "MVEB: Massive Video Embedding Benchmark",
-    "status": "arXiv, 2026 · Preprint · with Stanford, CMU & Harvard",
+    "status": "EMNLP 2026 · with Stanford, CMU & Harvard",
     "text": "We introduce the Massive Video Embedding Benchmark (MVEB), a 23-task benchmark for video embeddings spanning classification, zero-shot classification, clustering, pair classification, retrieval, and video-centric question answering. We evaluate 33 models and find that no single model dominates: MLLM-based embeddings lead on classification, clustering, pair classification, and QA; multimodal binding leads on retrieval and zero-shot classification; generative MLLMs without contrastive adaptation collapse on cross-modal tasks. Paired video-only vs. audio+video evaluations show that audio's contribution depends on dataset annotation provenance: audio helps when labels were produced from both modalities and hurts when they were produced from visuals alone, a six-point gap consistent across model families. MVEB is derived from MVEB+, a 184-task pool, and is designed to maintain task diversity while reducing evaluation cost. It integrates into the MTEB ecosystem for unified evaluation across text, image, audio, and video. We release MVEB and all 184 tasks along with code and a leaderboard.",
     "links": [
       {
@@ -300,7 +299,12 @@ const pubData = {
     "title": "Through the Looking Glass: Benchmarking Mirror Image Reasoning in Vision-Language Models",
     "status": "Accepted at CVPR Workshop 2026",
     "text": "When a clock reads 2:50 in a mirror, humans instantly infer the true time is 9:10 — yet we show that current Vision-Language Models (VLMs) overwhelmingly report \"2:50,\" hallucinating the canonical orientation rather than reasoning about the reflection. We term this systematic failure reflection blindness and introduce our benchmark, the first designed to diagnose it. It comprises 713 real-world images and 3,529 question-answer pairs spanning 10 scenario categories (license plates in rear-view mirrors, analog clocks, hands, ears, shoes, chemical formulas, ambulance mirror-text, selfie cameras, water reflections, and indoor mirrors), organized into five question types: recognition, correction, spatial, reasoning, and comparison. Evaluating 11 VLMs in both single-turn and multi-turn settings, we find that all models achieve only 39–48% accuracy (single-turn) versus 94% for humans, with frontier systems clustered at 42–44% and performance collapsing most severely on tasks requiring mental un-flipping of text and left–right chirality judgment. Multi-turn dialogue does not improve performance; most models degrade by 1–14 percentage points when questions are posed sequentially.",
-    "links": []
+    "links": [
+      {
+        "label": "Google Scholar",
+        "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=IzkudxkAAAAJ&citation_for_view=IzkudxkAAAAJ:_kc_bZDykSQC"
+      }
+    ]
   },
   "trace": {
     "title": "TRACE: Verifiable RL Environment for Network Troubleshooting Agents",
@@ -314,12 +318,6 @@ const pubData = {
     "text": "LLM code assistants are powerful but fundamentally untrustworthy: they hallucinate logic, mishandle corner cases, and give no guarantee that a generated artifact is correct. We study a setting where that gap can be narrowed without a full proof calculus: API contract migration, where a vendor changes an API's formal specification (OpenAPI) and a client codebase must be repaired, tested for backward compatibility, and left with a reversible rollback path. We introduce APISHIFT, a verifiable environment in which a trainable manager agent proposes structured JSON actions and four deterministic specialist verifiers — Diff, Patch, Test, Rollback — check, score, or certify each proposal, instantiating the propose→refute→repair→certify loop central to verifiable coding. APISHIFT contains 1,549 real (v1, v2) API version pairs from 449 production providers spanning ten breaking-change types, scored by a five-component machine-checked reward. Zero-shot evaluation across 20 models shows that constrained-output adherence, not model scale, determines success on clean scenarios: Llama-3.2-1B reaches a 100% verified solve rate, matching frontier models, while a 32B reasoning model scores 0% because it emits unconstrained chain-of-thought instead of schema-valid actions. A complementary 50-pair real-world evaluation shows the opposite trend: wild, multi-change specifications require model capacity (Llama-3.3-70B: 98% vs. Llama-3.2-1B: 10%), motivating RL under verifier-derived reward. As a first training baseline we fine-tune Qwen2.5-3B with GRPO and LoRA on a single RTX 3090 GPU and report a negative result: training peaks at reward 0.434 (step 400) before collapsing from within-batch reward-variance collapse under an all-or-nothing verified reward. We diagnose this failure precisely, identify partial-credit shaping and curriculum ordering as repair directions, and release the environment, dataset, and training infrastructure.",
     "links": []
   },
-  "cryo-agent": {
-    "title": "CRYO-AGENT: Agentic Cryo-ET Reconstruction with Physics-Guided Retrieval-Augmented Diffusion",
-    "status": "ECCV Workshop 2026 · Submitted",
-    "text": "Cryo-electron tomography (cryo-ET) is the gold standard for in situ structural biology, providing a unique window into macromolecular complexes within their native cellular environments. However, the technique is fundamentally limited by low signal-to-noise ratio and the \"missing wedge\" artifact, which induces anisotropic distortions and structural hallucinations that current feed-forward denoising methods fail to rigorously validate. CRYO-AGENT redefines 3D reconstruction as an autonomous, iterative scientific discovery loop: we orchestrate a Planner–Executor–Critic workflow where the Executor uses Retrieval-Augmented Cyclic Diffusion (RAD) to inject high-fidelity 3D atomic priors from the Protein Data Bank directly into the reconstruction process. By integrating a Critic agent with a differentiable physics simulator, CRYO-AGENT significantly reduces missing-wedge artifacts and achieves a high Hallucination Rejection Rate compared to state-of-the-art baselines. While the iterative agentic orchestration introduces higher computational latency than linear models, it ensures strict adherence to the underlying physical data — providing a robust pathway for resolving precise conformational states of proteins in noisy tomograms, and showcasing how vision-language reasoning and retrieval-augmented diffusion can solve complex inverse problems in the natural sciences.",
-    "links": []
-  },
   "da-llm": {
     "title": "Can Large Language Models Autonomously Perform Decision Analysis? Where the Boundary Lies, on a Classical Influence Diagram",
     "status": "Stanford University · Ongoing, 2026",
@@ -327,9 +325,9 @@ const pubData = {
     "links": []
   },
   "sr-lora": {
-    "title": "SR-LoRA: Parameter-Efficient Fine-Tuning for Agentic Reasoning",
-    "status": "CMU · Ongoing, 2026",
-    "text": "Extending parameter-efficient fine-tuning methods for agentic reasoning models. Current work in progress, alongside related work on Agentic VAD.",
+    "title": "Resolving Spatial and Semantic Conflicts in Multi-LoRA Composition via Softmax Routing and Cross-Adapter Attention Conditioning",
+    "status": "CMU · Submitted, ICLR 2027",
+    "text": "Multi-LoRA composition activates several Low-Rank Adaptation (LoRA) modules simultaneously so that a single diffusion forward pass generates an image that embodies multiple personalized concepts at once. Existing methods either merge adapter weight deltas uniformly, corrupting concepts that share spatial territory, or route noise predictions via hard per-pixel argmax, which discards non-dominant LoRA contributions and collapses identity consistency on overlapping pairs.\n\nWe propose two complementary, training-free mechanisms. SR-LoRA (Spatially-Routed LoRA) replaces hard argmax routing with temperature-controlled softmax masks over per-LoRA cross-attention maps, smoothly blending noise predictions at each spatial position. CLAC (Cross-LoRA Attention Conditioning) runs a two-pass UNet forward where the anchor LoRA's cross-attention keys and values are blended into the secondary LoRA's attention, suppressing appearance leakage; an IoU-based overlap detector activates this conditioning adaptively across all pair types.\n\nOn the ComposLoRA benchmark (240 compositions per domain, 10 seeds), SR-LoRA and FreeFuse reach equivalent CLIP-T (+4.3% over LoRA-C), while CLAC improves CLIP-I by +7.6pp over FreeFuse on reality (0.915 vs. 0.839) and +0.9pp on anime. The combination (Adaptive Fusion) achieves the highest CLIP-I on anime (0.875), validated with per-pair-type breakdowns, ablations, and N=3 triplet experiments.",
     "links": []
   },
   "edgemedbench": {
@@ -420,12 +418,6 @@ const pubData = {
     "title": "Unpaired MRI Synthesis from Segmentation Maps",
     "status": "Harvard University collaboration · Project Lead since Apr 2026 · In Progress · Targeting an international journal",
     "text": "An unpaired diffusion model for the conditional generation of brain MRI scans from segmentation maps, developed in collaboration with Harvard University.\n\nThe project sits within a broader line of work on unsupervised deep learning for neuroimaging, focused on image registration and segmentation. It builds PyTorch-based diffusion and geometric-matching frameworks and applies them to MRI, OCT, and LSFM neuroimage data.\n\nAs appointed project lead, I coordinate experiments, technical contributions, and project milestones toward a journal-targeted publication.",
-    "links": []
-  },
-  "astral": {
-    "title": "Astral: Training-Free Multi-Domain Video Anomaly Detection via Agentic SOP Compilation and Symbolic World Models",
-    "status": "In Progress",
-    "text": "Most video anomaly detection (VAD) systems learn statistical notions of normality from large labeled datasets, making them brittle when transferred across domains. Astral (Agentic Symbolic Temporal Reasoning and Anomaly Localization) is a training-free, three-agent system that detects anomalies by reasoning about procedural rather than statistical normality. Given only a plain-language Standard Operating Procedure (SOP) and a video clip, Astral compiles a Canonical Normal World Model — a symbolic representation encoding expected entities, states, temporal protocol steps, and Linear Temporal Logic safety rules — then detects deviations from it without any dataset-specific training. Agent 1 (SOP Compiler) parses the SOP using a 3B-parameter vision-language model; Agent 2 (Deterministic Perceptual Engine) builds a per-frame scene graph via zero-shot detection and tracking, evaluating divergences against the world model through a graph-neural-network analyzer; Agent 3 (Triggered Reasoner) performs causal verification only on flagged clips. Evaluated across liquid-dispensing, industrial-factory, and robotic-manipulation domains, Astral achieves 100.0% accuracy on LiquidAD, 90.9% (F1=0.945) on IPAD, and 60.0% (F1=0.600) on a PhysAD sample, with zero false positives on normal videos across all three datasets.",
     "links": []
   },
   "scene": {
