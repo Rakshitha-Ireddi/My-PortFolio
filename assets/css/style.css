@@ -595,10 +595,13 @@ main {
   margin-bottom: 2px;
 }
 
-.contact-info :is(.contact-link, time, address) {
+.contact-info :is(.contact-link, time, address),
+.contact-info > p:not(.contact-title) {
   color: var(--white-2);
   font-size: var(--fs-7);
 }
+
+.contact-info a.contact-link:visited { color: var(--white-2); }
 
 .contact-info address { font-style: normal; }
 
@@ -2217,4 +2220,10 @@ a.pm-link:hover { transform: translateY(-2px); }
 .about-text strong {
   color: var(--white-1);
   font-weight: var(--fw-600);
+}
+
+
+
+.mentor-name {
+  color: var(--orange-yellow-crayola);
 }
